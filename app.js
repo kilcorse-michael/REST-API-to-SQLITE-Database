@@ -1,12 +1,10 @@
 'use strict';
 // load modules
 const express = require('express');
-//morgam tp lop requests
 const morgan = require('morgan');
-//require database directory
 const db = require('./db');
-//require deconstructed models from db/models directory
-const { User, Course } = db.models;
+const User = db.models.User;
+const Course = db.models.Course
 const bodyParser = require('body-parser');
 const routes = require('./routes');
 
