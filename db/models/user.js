@@ -12,6 +12,7 @@ const User = sequelize.define('User', {
   },
   firstName: {
     type: Sequelize.STRING,
+    allowNull: false,
     validate: {
       notEmpty:{
         message: 'Please Provide a First Name!'
@@ -20,6 +21,7 @@ const User = sequelize.define('User', {
     },
   lastName: {
     type: Sequelize.STRING,
+    allowNull: false,
     validate: {
       notEmpty:{
         message: 'Please Provide a Last Name!'
@@ -28,6 +30,7 @@ const User = sequelize.define('User', {
     },
   emailAddress: {
     type: Sequelize.STRING,
+    allowNull: false,
     validate: {
       notEmpty:{
         message: 'Please Provide a Valid Email Address!'
@@ -36,6 +39,7 @@ const User = sequelize.define('User', {
     },
   password: {
     type: Sequelize.STRING,
+    allowNull: false,
     validate: {
       notEmpty:{
         message: 'Please Provide a Valid Password!'

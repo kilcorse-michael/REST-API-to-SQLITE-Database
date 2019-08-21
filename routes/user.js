@@ -78,6 +78,7 @@ router.get('/', authenticateUser, async(req, res)=>{
   res.status(400).json(error);
 }});
 
+
 //POST request to create a new user
 router.post('/', emailValidator, async(req, res)=>{
   const user = req.body;
@@ -99,7 +100,7 @@ router.post('/', emailValidator, async(req, res)=>{
    res.status(201).location(`api/users/`).end();
  });
 }catch(error){
-  res.status(400).json(error);
+  res.status(400).json({errors: error.errors[0].message});
 }
 });
 
