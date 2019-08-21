@@ -114,7 +114,7 @@ router.post('/', authenticateUser, async (req, res, next)=>{
    res.status(201).location(`/api/courses/${newCourse.id}`).end();
  });
 }catch(error){
-  res.status(400).json(error).end();
+  res.status(400).json({errors: error.errors[0].message}).end();
 }
 });
 
@@ -137,7 +137,7 @@ router.put('/:id',authenticateUser, async(req, res, next)=>{
     res.status(403).json({error: "Only the creator of this course can update changes!"}).end();
 }});
 } catch(error){
-  res.status(400).json(error).end();
+  res.status(400).json({errors: error.errors[0].message}).end();
 }});
 
 //allows the creator of the course to delete a course they created
