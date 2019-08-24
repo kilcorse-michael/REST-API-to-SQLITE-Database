@@ -24,10 +24,10 @@ const authenticateUser = async(req, res, next) => {
           .compareSync(credentials.pass, user.password);
           //if passwords match, alert to authentication success
         if (authenticated) {
-          console.log(`Authentication successful for username: ${user.username}`);
+          console.log(`Authentication successful for username: ${user.firstName} ${user.lastName}`);
           req.currentUser = user;
         } else {
-          message = `Authentication failure for username: ${user.username}`;
+          message = `Authentication failure for username: ${user.firstName} ${user.lastName}`;
         }
       } else {
 
@@ -124,6 +124,14 @@ router.put('/:id',authenticateUser, async(req, res, next)=>{
   const course = req.body;
   const user = req.currentUser;
   try{
+  if(!course.title || !course.description){
+    throw new Error('Please Provide both a Title and a Description when updating a course!');
+  }
+}catch(err){
+  res.status(400).json(err.message).end();
+}
+  try{
+
   await Course.update({
     title: course.title,
     description: course.description,
